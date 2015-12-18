@@ -18,5 +18,5 @@ function love.draw()
   love.graphics.print(alpha, 20, 20)
 
   love.graphics.setColor(102, 20, 99, alpha)
-  love.graphics.print("ZillaZillo", 400, 300)
+  love.graphics.print("ZillaZillo", 300, 300, 0, 1.5, 1.5)
 end
