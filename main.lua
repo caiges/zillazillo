@@ -8,6 +8,8 @@ function love.load()
   love.physics.setMeter(64) --the height of a meter our worlds will be 64px
   world = love.physics.newWorld(0, 0, true)
   love.window.setMode(650, 650)
+  -- Background
+  love.graphics.setBackgroundColor(194, 210, 174)
 
   zilla = Zilla:new(world, 200, 200)
 end
