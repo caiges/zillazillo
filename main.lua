@@ -4,7 +4,10 @@ function love.load()
   alpha = 0
   alphaIncrementer = 1
   alphaMultiplier = 3
-
+  -- dx = 0
+  -- dy = 0
+  -- dist = 0
+  -- inv = 0
   love.physics.setMeter(64) --the height of a meter our worlds will be 64px
   world = love.physics.newWorld(0, 0, true)
   love.window.setMode(650, 650)
@@ -38,14 +41,19 @@ function love.update(dt)
     zilla.body:applyForce(0, 400)
   end
 
+  dx = zilla.body:getX() - zilla.body_2:getX()
+  dy = zilla.body:getY() - zilla.body_2:getY()
+  dist = math.sqrt(dx * dx + dy * dy)
+
+  zilla.body_2:applyForce(dx * 4 / dist, dy * 4 / dist)
 end
 
 function love.draw()
   love.graphics.setColor(102, 20, 99, 255)
-  love.graphics.print("(" .. math.floor(zilla.body:getX() + 0.5) .. ", " .. math.floor(zilla.body:getY() + 0.5) .. ")", 20, 20)
+  love.graphics.print(alpha, 20, 20)
 
   love.graphics.setColor(220, 6, 217, alpha)
-  love.graphics.print("ZillaZillo", 300, 300, 0, 1.5, 1.5)
+  love.graphics.print("ZillaZillo", 300, 200, 0, 1.5, 1.5)
 
   zilla:draw()
 end
