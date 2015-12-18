@@ -42,7 +42,7 @@ end
 
 function love.draw()
   love.graphics.setColor(102, 20, 99, 255)
-  love.graphics.print(alpha, 20, 20)
+  love.graphics.print("(" .. math.floor(zilla.body:getX() + 0.5) .. ", " .. math.floor(zilla.body:getY() + 0.5) .. ")", 20, 20)
 
   love.graphics.setColor(220, 6, 217, alpha)
   love.graphics.print("ZillaZillo", 300, 300, 0, 1.5, 1.5)
