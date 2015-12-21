@@ -18,7 +18,7 @@ function love.load()
   --love.graphics.setBackgroundColor(194, 210, 174)
 
   background = Background:new(0, 0, {
-    size = 50,
+    size = 25,
     colors = {
       {
         red = 22,
@@ -26,14 +26,14 @@ function love.load()
         blue = 194
       },
       {
-        red = 31,
-        green = 29,
-        blue = 43
+        red = 128,
+        green = 86,
+        blue = 196
       },
       {
-        red = 14,
-        green = 27,
-        blue = 10
+        red = 128,
+        green = 43,
+        blue = 170
       }
     },
     alpha = 1,
@@ -48,6 +48,7 @@ function love.load()
     maxHeight = 650,
     maxWidth = 650
   })
+  background:build()
 
   zilla = Zilla:new(world, 200, 200)
 end

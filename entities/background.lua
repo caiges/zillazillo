@@ -11,37 +11,52 @@ function Background:new(x, y, params)
     fillAlpha = params.fill.alpha,
     fill = params.fill,
     maxWidth = params.maxWidth,
-    maxHeight = params.maxHeight
+    maxHeight = params.maxHeight,
+    rows = {}
   }
   self.__index = self
   return setmetatable(newObj, self)
 end
 
-function Background:draw()
+function Background:build()
   local rows = 0
   while rows * self.size < self.maxHeight do
     local columns = 0
+    self.rows[rows + 1] = {}
 
     while columns * self.size < self.maxWidth do
       local xOffset = 0
       local yOffset = 0
 
-      if columns - 1 ~= -1 then
+      if columns ~= 0 then
         xOffset = columns * self.size
       end
 
-      if rows - 1 ~= -1 then
+      if rows ~= 0 then
         yOffset = rows * self.size
       end
 
       -- Draw box
       local color = self.colors[math.random(#self.colors)]
-      love.graphics.setColor(color.red, color.green, color.blue)
-      love.graphics.rectangle('fill', xOffset, yOffset, self.size, self.size)
+      self.rows[rows + 1][columns + 1] = {
+        color = color,
+        x = xOffset,
+        y = yOffset
+      }
       -- Increment column counter
       columns = columns + 1
     end
     rows = rows + 1
+  end
+end
+
+function Background:draw()
+  for i = 1, #self.rows do
+    for j = 1, #self.rows[i] do
+      column = self.rows[i][j]
+      love.graphics.setColor(column.color.red, column.color.green, column.color.blue)
+      love.graphics.rectangle('fill', column.x, column.y, self.size, self.size)
+    end
   end
 end
 
