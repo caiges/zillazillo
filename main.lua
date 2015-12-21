@@ -1,4 +1,7 @@
 local Zilla = require('entities/zilla')
+local Background = require('entities/background')
+
+math.randomseed(os.time())
 
 function love.load()
   alpha = 0
@@ -12,7 +15,39 @@ function love.load()
   world = love.physics.newWorld(0, 0, true)
   love.window.setMode(650, 650)
   -- Background
-  love.graphics.setBackgroundColor(194, 210, 174)
+  --love.graphics.setBackgroundColor(194, 210, 174)
+
+  background = Background:new(0, 0, {
+    size = 50,
+    colors = {
+      {
+        red = 22,
+        green = 66,
+        blue = 194
+      },
+      {
+        red = 31,
+        green = 29,
+        blue = 43
+      },
+      {
+        red = 14,
+        green = 27,
+        blue = 10
+      }
+    },
+    alpha = 1,
+    fill = {
+      color = {
+        red = 28,
+        green = 27,
+        blue = 41
+      },
+      alpha = 1
+    },
+    maxHeight = 650,
+    maxWidth = 650
+  })
 
   zilla = Zilla:new(world, 200, 200)
 end
@@ -55,5 +90,6 @@ function love.draw()
   love.graphics.setColor(220, 6, 217, alpha)
   love.graphics.print("ZillaZillo", 300, 200, 0, 1.5, 1.5)
 
+  background:draw()
   zilla:draw()
 end
